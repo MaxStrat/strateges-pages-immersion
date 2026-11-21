@@ -11,6 +11,7 @@ ROOT = Path(__file__).parent
 
 # Liens communs à toutes les pages. None = pas encore reçu (repère « à ajouter » affiché).
 COMMUN = {
+    "domaine": None,          # ex. "https://admission.ivy-strategy.co" : sert à l'aperçu WhatsApp (image + titre)
     "fiche_video_yt": None,   # vidéo de Léa sur la fiche point en famille (YouTube)
     "fiche_video_loom": None, # ou lien Loom embed (https://www.loom.com/embed/...)
     "cga_pdf": None,          # nom du PDF des conditions générales posé dans src/assets/
@@ -59,15 +60,38 @@ def bouton_cga():
     return f'<div><a class="btn" aria-disabled="true">{svg}{label}</a>{TODO}</div>'
 
 
+def og_image(slug):
+    if not COMMUN["domaine"]:
+        return ""
+    url = f'{COMMUN["domaine"].rstrip("/")}/{slug}/assets/apercu.jpg'
+    return (f'<meta property="og:image" content="{url}">\n<meta property="og:image:width" content="1200">\n'
+            f'<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">')
+
+
+ACCUEIL = """<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>Les Stratèges · Espace d'admission</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400&display=swap" rel="stylesheet">
+</head><body style="margin:0;min-height:100vh;background:#111;color:#F7F4EC;font-family:Inter,Arial,sans-serif;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box">
+<div><img src="{slug}/assets/logo.png" alt="Les Stratèges" style="width:96px;height:96px">
+<div style="font-family:Cinzel,Georgia,serif;font-weight:700;letter-spacing:6px;color:#C9A24D;margin:20px 0 12px">LES STRATÈGES</div>
+<p style="color:#D9D4C7;font-size:17px;max-width:420px;margin:0 auto">Votre espace d'admission est personnel.<br>Utilisez le lien envoyé par votre chargé d'admission.</p>
+</div></body></html>
+"""
+
+
 def main():
     src = (ROOT / "src" / "page.html").read_text(encoding="utf-8")
     dist = ROOT / "dist"
+    dist.mkdir(exist_ok=True)
+    (dist / "index.html").write_text(ACCUEIL.replace("{slug}", next(iter(ECOLES))), encoding="utf-8")
     for slug, e in ECOLES.items():
         html = (src
                 .replace("{{VIDEO_FICHE}}", video_fiche())
                 .replace("{{BOUTON_CGA}}", bouton_cga())
                 .replace("{{VIDEO_TEMOIGNAGE}}", video(e["temoignage_yt"], f"Témoignage · {e['ecole']}",
                                                        f"Témoignage {e['ecole']} à venir"))
+                .replace("{{OG_IMAGE}}", og_image(slug))
                 .replace("{{ECOLE}}", e["ecole"])
                 .replace("{{SLUG}}", e["logo"]))
         out = dist / slug
@@ -76,6 +100,7 @@ def main():
         shutil.copytree(ROOT / "src" / "assets", out / "assets")
         (out / "index.html").write_text(html, encoding="utf-8")
         manque = [k for k, v in (("témoignage", e["temoignage_yt"]),
+                                  ("domaine (aperçu WhatsApp)", COMMUN["domaine"]),
                                   ("vidéo fiche", COMMUN["fiche_video_yt"] or COMMUN["fiche_video_loom"]),
                                   ("PDF conditions générales", COMMUN["cga_pdf"])) if not v]
         etat = "PRÊTE" if not manque else "manque : " + ", ".join(manque)

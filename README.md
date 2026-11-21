@@ -12,6 +12,7 @@ Ce sont des pages HTML statiques. Elles n'ont pas de base de données ni de form
 
 ```
 dist/                  ← LES PAGES À METTRE EN LIGNE (déjà générées)
+  index.html             (racine du domaine : renvoie vers le lien du chargé d'admission)
   columbia/index.html
   princeton/index.html
   harvard/index.html
@@ -44,6 +45,7 @@ https://admission.ivy-strategy.co/yale
 4. Chez votre registrar (DNS), créez l'enregistrement que Vercel indique, en général :
    `CNAME  admission  →  cname.vercel-dns.com`
 5. Chaque modification poussée sur le repo se met en ligne toute seule.
+6. **Indispensable une fois le domaine choisi** : renseignez-le dans `build.py` (`"domaine": "https://admission.ivy-strategy.co"`), lancez `python3 build.py`, puis poussez. C'est ce qui fait apparaître l'image et le titre quand le closer colle le lien sur WhatsApp. Sans ça, le lien arrive nu chez la famille.
 
 ### Option B : votre hébergement actuel
 Copiez le **contenu du dossier `dist/`** à la racine du sous-domaine (ou dans un sous-dossier de votre site). Chaque dossier (`columbia/`, `harvard/`…) devient une adresse. Rien d'autre à installer.
@@ -65,6 +67,7 @@ Pas de commande de build, dossier publié = `dist`.
 | **Vidéo témoignage Yale** | page Yale, bloc 3 | Léa |
 | **Vidéo de Léa qui explique la fiche « point en famille »** (≈ 3 min) | toutes les pages, bloc 2 | Léa |
 | **PDF des conditions générales d'admission** | toutes les pages, bloc 5 | Les Stratèges |
+| **Nom de domaine** (dans `build.py`) | aperçu du lien sur WhatsApp | Max |
 
 Déjà en place : les 3 vidéos de Léa (présentation du plan, les six piliers, les plans B), la fiche « point en famille » en PDF téléchargeable, le logo et les 8 blasons.
 
@@ -80,6 +83,7 @@ Tout se règle en haut de `build.py`, puis on régénère.
 
 ```python
 COMMUN = {
+    "domaine": "https://admission.ivy-strategy.co",  # votre sous-domaine final
     "fiche_video_yt": "IDENTIFIANT_YOUTUBE",   # vidéo de Léa sur la fiche
     "fiche_video_loom": None,                  # ou un lien Loom embed à la place
     "cga_pdf": "conditions-generales.pdf",     # fichier à déposer dans src/assets/
