@@ -11,7 +11,7 @@ ROOT = Path(__file__).parent
 
 # Liens communs à toutes les pages. None = pas encore reçu (repère « à ajouter » affiché).
 COMMUN = {
-    "domaine": None,          # ex. "https://admission.ivy-strategy.co" : sert à l'aperçu WhatsApp (image + titre)
+    "domaine": "https://admission.ivy-strategy.co",  # ex. "https://admission.ivy-strategy.co" : sert à l'aperçu WhatsApp (image + titre)
     "fiche_video_yt": None,   # vidéo de Léa sur la fiche point en famille (YouTube)
     "fiche_video_loom": None, # ou lien Loom embed (https://www.loom.com/embed/...)
     "cga_pdf": None,          # nom du PDF des conditions générales posé dans src/assets/
