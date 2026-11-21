@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Votre espace d'admission · Les Stratèges</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A24D; --gold-dark:#8A6A24; --ink:#111111; --text:#1A1A1A; --muted:#4A463F;
+  --cream:#F7F4EC; --cream-2:#EFEADF; --line:#E2DCCD; --dark-line:#3A362F; --dark-muted:#BDB7AA; --dark-text:#D9D4C7;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.5}
+a{color:var(--gold-dark)}
+img{max-width:100%}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 40px}
+.serif{font-family:Cinzel,Georgia,serif;font-weight:700}
+
+/* En-tête */
+header{background:var(--ink);padding:56px 0 64px}
+.brand{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.brand img{width:84px;height:84px;display:block}
+.brand-kicker{font-size:14px;letter-spacing:5px;color:var(--gold)}
+h1{margin:8px 0;font-size:48px;line-height:1.1;color:var(--cream)}
+.lead{margin:0;font-size:18px;color:var(--dark-text)}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.steps::before{content:"";position:absolute;top:17px;left:12%;right:12%;height:2px;background:var(--dark-line)}
+.step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.dot{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--dark-text);border:2px solid #5A554B;display:flex;align-items:center;justify-content:center;font-size:15px}
+.step.done .dot{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.step.now .dot{color:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,77,.25)}
+.step-t{font-size:13px;color:var(--cream)}
+.step.now .step-t{color:var(--gold)}
+.step-d{font-size:13px;line-height:1.4;color:var(--dark-muted);max-width:180px}
+
+/* Sections */
+section{padding:88px 0}
+section.alt{background:var(--cream-2)}
+.stack{display:flex;flex-direction:column;gap:24px}
+.kicker{font-size:13px;letter-spacing:3px;color:var(--gold-dark)}
+h2{margin:0;font-size:34px;line-height:1.15;color:var(--text)}
+.p{margin:0;font-size:17px;line-height:1.6;color:var(--muted);max-width:680px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:28px;margin-top:8px}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:48px;align-items:center}
+.caption{margin:10px 0 0;font-size:14px;color:var(--muted)}
+
+/* Lecteur vidéo (charge YouTube au clic) */
+.video{position:relative;width:100%;aspect-ratio:16/9;background:#1E1D1A;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(17,17,17,.18)}
+.video button{all:unset;position:absolute;inset:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.video .thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .2s}
+.video button:hover .thumb,.video button:focus-visible .thumb{opacity:.7}
+.video .play{position:relative;width:76px;height:76px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;padding-left:4px;transition:transform .2s}
+.video button:hover .play{transform:scale(1.06)}
+.video .tag{position:absolute;top:18px;left:18px;background:rgba(17,17,17,.55);color:#EDE8DC;font-size:13px;padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.video .dur{position:absolute;top:18px;right:18px;color:var(--dark-text);font-size:13px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video.pending{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:var(--dark-muted);font-size:14px;text-align:center;padding:24px}
+.video.pending .play{background:#3A362F;opacity:.8}
+
+/* Cartes et boutons */
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--cream);text-decoration:none;font-weight:600;font-size:15px;align-self:flex-start}
+.btn:hover{background:#2A2824;color:var(--cream)}
+.btn[aria-disabled="true"]{background:#8D877B;pointer-events:none}
+.note{font-size:15px;line-height:1.55;color:var(--text)}
+.note.small{font-size:14px;color:var(--muted)}
+
+/* Témoignage */
+.school{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.crest{width:64px;height:64px;border-radius:50%;background:#fff;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;flex:none}
+.crest img{width:44px;height:44px;object-fit:contain}
+
+/* Repère interne : visible uniquement sur la page modèle */
+.todo{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:6px;background:#FFF1C9;color:#7A5A00;border:1px dashed #C9A24D;font:600 11px/1.6 Inter,Arial,sans-serif;letter-spacing:.3px;vertical-align:middle}
+
+/* Pied de page */
+footer{background:var(--ink);padding:48px 0 40px}
+.crests{display:grid;grid-template-columns:repeat(8,1fr);gap:20px 8px}
+.crests div{display:flex;flex-direction:column;align-items:center;gap:8px}
+.crests .c{width:60px;height:60px;border-radius:50%;background:var(--cream);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center}
+.crests img{width:42px;height:42px;object-fit:contain}
+.crests span{font-size:12px;letter-spacing:1px;color:var(--gold)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--dark-line);padding-top:24px;margin-top:32px}
+.foot .serif{font-size:20px;letter-spacing:6px;color:var(--cream)}
+.foot span:last-child{font-size:15px;color:var(--dark-text)}
+
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  header{padding:36px 0 40px}
+  .brand{gap:16px}
+  .brand img{width:60px;height:60px}
+  h1{font-size:32px}
+  .lead{font-size:16px}
+  .steps{grid-template-columns:repeat(2,1fr);gap:24px 12px;margin-top:32px}
+  .steps::before{display:none}
+  section{padding:56px 0}
+  h2{font-size:26px}
+  .p{font-size:16px}
+  .video .play{width:60px;height:60px}
+  .btn{align-self:stretch;justify-content:center;text-align:center;padding:10px 18px}
+  .crests{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Logo Les Stratèges">
+      <div>
+        <div class="serif brand-kicker">LES STRATÈGES</div>
+        <h1 class="serif">Votre espace d'admission</h1>
+        <p class="lead">À regarder ensemble, parent(s) et élève, avant votre second rendez-vous.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step done"><div class="dot serif">✓</div><div class="step-t serif">Étape 1</div><div class="step-d">Premier entretien validé</div></div>
+      <div class="step now"><div class="dot serif">2</div><div class="step-t serif">Étape 2 · en cours</div><div class="step-d">Votre espace d'admission</div></div>
+      <div class="step"><div class="dot serif">3</div><div class="step-t serif">Étape 3</div><div class="step-d">Second rendez-vous, décision du comité</div></div>
+      <div class="step"><div class="dot serif">4</div><div class="step-t serif">Étape 4</div><div class="step-d">Votre objectif : intégrer l'Ivy League</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap stack">
+    <div class="serif kicker">1 · L'ACCOMPAGNEMENT</div>
+    <h2 class="serif">Comment nous accompagnons chaque élève</h2>
+    <p class="p">Léa, fondatrice des Stratèges, vous présente le plan de préparation, puis les six piliers de l'accompagnement.</p>
+    <div class="grid2">
+      <div>
+        <div class="video" data-yt="UYbjRTaa7lc" data-tag="Présentation du plan"></div>
+        <p class="caption">Présentation du plan</p>
+      </div>
+      <div>
+        <div class="video" data-yt="IOaZ134qCHU" data-tag="Les six piliers"></div>
+        <p class="caption">Les six piliers de l'accompagnement</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap split">
+    <div>
+      <div class="video pending"><span class="play"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="#111111"/></svg></span><span>Vidéo de Léa sur la fiche, en cours de tournage</span><span class="todo">À AJOUTER</span></div>
+    </div>
+    <div class="stack" style="gap:20px">
+      <div class="serif kicker">2 · VOTRE POINT EN FAMILLE</div>
+      <h2 class="serif">L'étape 2 de votre admission</h2>
+      <p class="p">Léa vous explique la fiche à remplir ensemble, parents et élève. Elle fait partie de votre dossier d'admission.</p>
+      <div class="card">
+        <a class="btn" href="assets/fiche-point-en-famille.pdf" download>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A24D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>
+          Télécharger la fiche (PDF)
+        </a>
+        <div class="note">À remplir et signer ensemble, puis à renvoyer à votre chargé d'admission <strong>dans les plus brefs délais, avant votre second rendez-vous</strong>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack">
+    <div class="serif kicker">3 · ILS L'ONT FAIT</div>
+    <div class="school">
+      <div class="crest"><img src="assets/yale.png" alt="Blason Yale"></div>
+      <h2 class="serif">Ils ont intégré Yale</h2>
+    </div>
+    <p class="p">Le témoignage d'un élève accompagné par Les Stratèges et aujourd'hui étudiant à Yale : son parcours, ses doutes, et ce qui a fait la différence.</p>
+    <div style="margin-top:8px">
+      <div class="video pending"><span class="play"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="#111111"/></svg></span><span>Témoignage Yale à venir</span><span class="todo">À AJOUTER</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap stack">
+    <div class="serif kicker">4 · ET SI CE N'EST PAS LE PLAN A ?</div>
+    <h2 class="serif">Les plans B, préparés dès le départ</h2>
+    <p class="p">Chaque élève prépare aussi des alternatives solides. Léa vous explique comment nous les construisons.</p>
+    <div style="margin-top:8px">
+      <div class="video" data-yt="b8jjvQ4zTvk" data-tag="Les plans B"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack">
+    <div class="serif kicker">5 · VOS CONDITIONS GÉNÉRALES D'ADMISSION</div>
+    <h2 class="serif">Ce à quoi nous nous engageons, et ce que nous attendons de vous</h2>
+    <p class="p">Pour arriver au second rendez-vous en toute sérénité, prenez connaissance du cadre de l'accompagnement : qui nous sommes, nos engagements, les vôtres et le déroulé de la préparation.</p>
+    <div class="card" style="max-width:640px;padding:22px">
+      <div><a class="btn" aria-disabled="true"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A24D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>Télécharger les conditions générales d'admission (PDF)</a><span class="todo">À AJOUTER</span></div>
+      <div class="note small">Document d'information, à lire avant votre second rendez-vous. Vous ne signez rien à ce stade.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="crests">
+      <div><div class="c"><img src="assets/harvard.png" alt="Blason Harvard"></div><span class="serif">Harvard</span></div>
+      <div><div class="c"><img src="assets/yale.png" alt="Blason Yale"></div><span class="serif">Yale</span></div>
+      <div><div class="c"><img src="assets/princeton.png" alt="Blason Princeton"></div><span class="serif">Princeton</span></div>
+      <div><div class="c"><img src="assets/columbia.png" alt="Blason Columbia"></div><span class="serif">Columbia</span></div>
+      <div><div class="c"><img src="assets/upenn.png" alt="Blason UPenn"></div><span class="serif">UPenn</span></div>
+      <div><div class="c"><img src="assets/cornell.png" alt="Blason Cornell"></div><span class="serif">Cornell</span></div>
+      <div><div class="c"><img src="assets/brown.png" alt="Blason Brown"></div><span class="serif">Brown</span></div>
+      <div><div class="c"><img src="assets/dartmouth.png" alt="Blason Dartmouth"></div><span class="serif">Dartmouth</span></div>
+    </div>
+    <div class="foot">
+      <span class="serif">LES STRATÈGES</span>
+      <span>Une question ? Contactez votre chargé d'admission.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Vignette + bouton lecture ; la vidéo YouTube ne se charge qu'au clic (page rapide sur mobile).
+document.querySelectorAll('.video[data-yt]').forEach(function (box) {
+  var id = box.getAttribute('data-yt'), tag = box.getAttribute('data-tag') || '';
+  box.innerHTML =
+    '<button type="button" aria-label="Lire la vidéo : ' + tag + '">' +
+    '<img class="thumb" src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="" loading="lazy">' +
+    '<span class="play"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="#111111"/></svg></span>' +
+    '</button>' + (tag ? '<div class="tag">' + tag + '</div>' : '');
+  box.querySelector('button').addEventListener('click', function () {
+    box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="' + tag +
+      '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  });
+});
+</script>
+</body>
+</html>
