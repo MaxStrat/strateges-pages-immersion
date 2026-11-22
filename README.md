@@ -115,3 +115,18 @@ Si vous préférez ne pas toucher au code, envoyez les liens à Yakine et il ré
 ## 5. Lien à donner aux closers
 
 Une fois en ligne, le closer envoie à la famille la page de **l'école visée par l'élève** (son plan A), avec le message de relance entre R1 et R2. Si l'école visée n'a pas encore de témoignage, il envoie la page de l'école la plus proche (Harvard en priorité).
+
+
+---
+
+## 6. Pages vidéo simples (VSL)
+
+Trois pages « titre + vidéo » à envoyer aux familles, pour ne jamais envoyer le lien brut de l'hébergeur :
+
+| Adresse | Vidéo | Quand l'envoyer |
+|---|---|---|
+| `/piliers/` | Les 6 piliers d'un dossier admis (VSL 1) | avant le R1 |
+| `/plans-b/` | Les plans B de luxe (VSL 2) | entre le R1 et le R2 |
+| `/plan-de-reussite/` | Présentation du plan de réussite (VSL 3) | entre le R1 et le R2 |
+
+Elles se règlent dans `VIDEOS` en haut de `build.py`.

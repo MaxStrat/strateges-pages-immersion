@@ -35,6 +35,13 @@ ECOLES = {
     # "upenn": {"ecole": "UPenn", "logo": "upenn", "intro": None, "temoignages": []},
 }
 
+# Pages vidéo simples (titre + vidéo) à envoyer aux familles. Clé = adresse (/piliers/ ...).
+VIDEOS = {
+    "piliers":          {"titre": "Les 6 piliers d'un dossier admis",  "yt": "IOaZ134qCHU"},  # VSL 1, avant le R1
+    "plans-b":          {"titre": "Les plans B de luxe",               "yt": "b8jjvQ4zTvk"},  # VSL 2, entre R1 et R2
+    "plan-de-reussite": {"titre": "Présentation du plan de réussite",  "yt": "UYbjRTaa7lc"},  # VSL 3, entre R1 et R2
+}
+
 TODO = '<span class="todo">À AJOUTER</span>'
 
 
@@ -124,6 +131,19 @@ def main():
                                   ("PDF conditions générales", COMMUN["cga_pdf"])) if not v]
         etat = "PRÊTE" if not manque else "manque : " + ", ".join(manque)
         print(f"{slug:10} -> dist/{slug}/index.html   {etat}")
+
+    gabarit = (ROOT / "src" / "video.html").read_text(encoding="utf-8")
+    for slug, v in VIDEOS.items():
+        out = dist / slug
+        if out.exists():
+            shutil.rmtree(out)
+        (out / "assets").mkdir(parents=True)
+        for f in ("logo.png", "apercu.jpg"):
+            shutil.copy(ROOT / "src" / "assets" / f, out / "assets" / f)
+        html = (gabarit.replace("{{OG_IMAGE}}", og_image(slug))
+                .replace("{{TITRE}}", v["titre"]).replace("{{YT}}", v["yt"]))
+        (out / "index.html").write_text(html, encoding="utf-8")
+        print(f"{slug:16} -> dist/{slug}/index.html   vidéo : {v['titre']}")
 
 
 if __name__ == "__main__":
