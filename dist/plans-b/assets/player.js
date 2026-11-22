@@ -20,6 +20,7 @@
     '.video .ply-track{flex:1;height:18px;display:flex;align-items:center;cursor:pointer;touch-action:none}' +
     '.video .ply-rail{position:relative;width:100%;height:4px;border-radius:2px;background:rgba(247,244,236,.28)}' +
     '.video .ply-fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;background:#C9A24D}' +
+    '.video .ply-bar .ply-speed{width:auto;min-width:38px;padding:0 6px;font:600 13px Inter,Arial,sans-serif;border:1px solid rgba(247,244,236,.35)}' +
     '.video .ply-time{font-variant-numeric:tabular-nums;white-space:nowrap;flex:none}' +
     '.video:fullscreen{border-radius:0;max-width:none}' +
     '.video:-webkit-full-screen{border-radius:0;max-width:none}' +
@@ -68,12 +69,14 @@
         '<button type="button" class="ply-pp" aria-label="Pause">' + ICON.pause + '</button>' +
         '<div class="ply-track" role="slider" aria-label="Avancer ou reculer dans la vidéo" tabindex="0"><div class="ply-rail"><div class="ply-fill"></div></div></div>' +
         '<span class="ply-time">0:00</span>' +
+        '<button type="button" class="ply-speed" aria-label="Vitesse de lecture">1x</button>' +
         '<button type="button" class="ply-mute" aria-label="Couper le son">' + ICON.son + '</button>' +
         (fsOK ? '<button type="button" class="ply-fs" aria-label="Plein écran">' + ICON.plein + '</button>' : '') +
       '</div>';
     var $ = function (q) { return box.querySelector(q); };
     var shield = $('.ply-shield'), cover = $('.ply-cover'), big = $('.ply-big'), pp = $('.ply-pp'),
-        track = $('.ply-track'), fill = $('.ply-fill'), time = $('.ply-time'), mute = $('.ply-mute'), fs = $('.ply-fs');
+        track = $('.ply-track'), fill = $('.ply-fill'), time = $('.ply-time'), mute = $('.ply-mute'), fs = $('.ply-fs'), speed = $('.ply-speed');
+    var RATES = [1, 1.25, 1.5, 1.75, 2], rate = 0;
     var player, ended = false, idleT;
 
     function wake() {
@@ -142,6 +145,14 @@
       if (!player || !player.getCurrentTime) return;
       if (e.key === 'ArrowRight') player.seekTo(player.getCurrentTime() + 10, true);
       if (e.key === 'ArrowLeft') player.seekTo(player.getCurrentTime() - 10, true);
+    });
+    speed.addEventListener('click', function () {
+      if (!player || !player.setPlaybackRate) return;
+      rate = (rate + 1) % RATES.length;
+      player.setPlaybackRate(RATES[rate]);
+      speed.textContent = String(RATES[rate]).replace('.', ',') + 'x';
+      speed.setAttribute('aria-label', 'Vitesse de lecture : ' + speed.textContent);
+      wake();
     });
     mute.addEventListener('click', function () {
       if (!player || !player.isMuted) return;
