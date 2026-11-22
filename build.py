@@ -21,9 +21,12 @@ COMMUN = {
 # de vidéos YouTube (id = ce qui suit youtu.be/). Liste vide = repère « à ajouter » affiché.
 ECOLES = {
     "columbia": {"ecole": "Columbia", "logo": "columbia",
-                 "intro": "Seth, ingénieur passé par la prépa et l'ESTP, raconte son admission en master à Columbia : ses essais, le TOEFL, ses doutes, et la vie dans l'Ivy League à New York.",
-                 "temoignages": [{"yt": "xyZ81CK6IoM", "legende": "Seth, admis à Columbia"}]},
-    "princeton": {"ecole": "Princeton", "logo": "princeton", "intro": None, "temoignages": []},
+                 "intro": "Seth, ingénieur passé par la prépa et l'ESTP, raconte son admission en master à Columbia. Selma, étudiante à Columbia, partage son parcours avec Théotime, admis à Boston College : leur dossier, la vie de campus et leurs conseils.",
+                 "temoignages": [{"yt": "xyZ81CK6IoM", "legende": "Seth, admis à Columbia"},
+                                 {"yt": "4a3-3BXPFfo", "legende": "Selma (Columbia) et Théotime (Boston College)"}]},
+    "princeton": {"ecole": "Princeton", "logo": "princeton",
+                  "intro": "Kiara, 17 ans, a été admise à Princeton depuis la France. Elle détaille sa stratégie : ses notes dès la troisième, le SAT, ses essais, l'entretien d'admission et la bourse obtenue.",
+                  "temoignages": [{"yt": "qKi9-4O5BEk", "legende": "Kiara, admise à Princeton"}]},
     "harvard": {"ecole": "Harvard", "logo": "harvard",
                 "intro": "Deux parcours, deux façons d'y arriver depuis un lycée français : Salomé, diplômée de Harvard, et Stéphanie, aujourd'hui étudiante en génie mécanique.",
                 "temoignages": [{"yt": "Lk7-jZFAiQU", "legende": "Salomé, diplômée de Harvard"},
@@ -59,7 +62,7 @@ def bloc_temoignages(e):
     cartes = "".join(
         f'<div>{video(v["yt"], v["legende"], "")}<p class="caption">{v["legende"]}</p></div>'
         for v in e["temoignages"])
-    return f'<div class="grid2">{cartes}</div>' if len(e["temoignages"]) > 1 else cartes
+    return f'<div class="grid2">{cartes}</div>'
 
 
 def intro(e):
