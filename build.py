@@ -141,7 +141,7 @@ def main():
         if out.exists():
             shutil.rmtree(out)
         (out / "assets").mkdir(parents=True)
-        for f in ("logo.png", "apercu.jpg"):
+        for f in ("logo.png", "apercu.jpg", "player.js"):
             shutil.copy(ROOT / "src" / "assets" / f, out / "assets" / f)
         html = (gabarit.replace("{{OG_IMAGE}}", og_image(slug))
                 .replace("{{TITRE}}", v["titre"]).replace("{{YT}}", v["yt"]))
