@@ -17,17 +17,22 @@ COMMUN = {
     "cga_pdf": None,          # nom du PDF des conditions générales posé dans src/assets/
 }
 
-# Une entrée par témoignage reçu. temoignage_yt = identifiant YouTube (youtu.be/<id>).
+# Une entrée par école. « intro » = texte au-dessus des vidéos ; « temoignages » = liste
+# de vidéos YouTube (id = ce qui suit youtu.be/). Liste vide = repère « à ajouter » affiché.
 ECOLES = {
-    "columbia":  {"ecole": "Columbia",  "logo": "columbia",  "temoignage_yt": None},
-    "princeton": {"ecole": "Princeton", "logo": "princeton", "temoignage_yt": None},
-    "harvard":   {"ecole": "Harvard",   "logo": "harvard",   "temoignage_yt": None},
-    "yale":      {"ecole": "Yale",      "logo": "yale",      "temoignage_yt": None},
-    # Autres écoles possibles (blasons déjà dans src/assets) :
-    # "upenn":     {"ecole": "UPenn",     "logo": "upenn",     "temoignage_yt": None},
-    # "cornell":   {"ecole": "Cornell",   "logo": "cornell",   "temoignage_yt": None},
-    # "brown":     {"ecole": "Brown",     "logo": "brown",     "temoignage_yt": None},
-    # "dartmouth": {"ecole": "Dartmouth", "logo": "dartmouth", "temoignage_yt": None},
+    "columbia": {"ecole": "Columbia", "logo": "columbia",
+                 "intro": "Seth, ingénieur passé par la prépa et l'ESTP, raconte son admission en master à Columbia : ses essais, le TOEFL, ses doutes, et la vie dans l'Ivy League à New York.",
+                 "temoignages": [{"yt": "xyZ81CK6IoM", "legende": "Seth, admis à Columbia"}]},
+    "princeton": {"ecole": "Princeton", "logo": "princeton", "intro": None, "temoignages": []},
+    "harvard": {"ecole": "Harvard", "logo": "harvard",
+                "intro": "Deux parcours, deux façons d'y arriver depuis un lycée français : Salomé, diplômée de Harvard, et Stéphanie, aujourd'hui étudiante en génie mécanique.",
+                "temoignages": [{"yt": "Lk7-jZFAiQU", "legende": "Salomé, diplômée de Harvard"},
+                                {"yt": "dQZCuVhWYF8", "legende": "Stéphanie, étudiante à Harvard"}]},
+    "yale": {"ecole": "Yale", "logo": "yale",
+             "intro": "Chloé, 18 ans, est entrée à Yale après un bac français. Elle raconte sa méthode : le SAT, ses activités, ses essais et ses lettres de recommandation.",
+             "temoignages": [{"yt": "kaiEOG0VBf4", "legende": "Chloé, étudiante à Yale"}]},
+    # Autres écoles possibles (blasons déjà dans src/assets) : upenn, cornell, brown, dartmouth
+    # "upenn": {"ecole": "UPenn", "logo": "upenn", "intro": None, "temoignages": []},
 }
 
 TODO = '<span class="todo">À AJOUTER</span>'
@@ -39,6 +44,20 @@ def video(yt, tag, attente):
     return (f'<div class="video pending"><span class="play"><svg aria-hidden="true" width="28" height="28" '
             f'viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="#111111"/></svg></span>'
             f'<span>{attente}</span>{TODO}</div>')
+
+
+def bloc_temoignages(e):
+    if not e["temoignages"]:
+        return video(None, "", f"Témoignage {e['ecole']} à venir")
+    cartes = "".join(
+        f'<div>{video(v["yt"], v["legende"], "")}<p class="caption">{v["legende"]}</p></div>'
+        for v in e["temoignages"])
+    return f'<div class="grid2">{cartes}</div>' if len(e["temoignages"]) > 1 else cartes
+
+
+def intro(e):
+    return e["intro"] or (f"Le témoignage d'un élève aujourd'hui à {e['ecole']} : "
+                          "son parcours, ses doutes, et ce qui a fait la différence.")
 
 
 def video_fiche():
@@ -89,8 +108,8 @@ def main():
         html = (src
                 .replace("{{VIDEO_FICHE}}", video_fiche())
                 .replace("{{BOUTON_CGA}}", bouton_cga())
-                .replace("{{VIDEO_TEMOIGNAGE}}", video(e["temoignage_yt"], f"Témoignage · {e['ecole']}",
-                                                       f"Témoignage {e['ecole']} à venir"))
+                .replace("{{VIDEO_TEMOIGNAGE}}", bloc_temoignages(e))
+                .replace("{{INTRO_TEMOIGNAGE}}", intro(e))
                 .replace("{{OG_IMAGE}}", og_image(slug))
                 .replace("{{ECOLE}}", e["ecole"])
                 .replace("{{SLUG}}", e["logo"]))
@@ -99,7 +118,7 @@ def main():
             shutil.rmtree(out)
         shutil.copytree(ROOT / "src" / "assets", out / "assets")
         (out / "index.html").write_text(html, encoding="utf-8")
-        manque = [k for k, v in (("témoignage", e["temoignage_yt"]),
+        manque = [k for k, v in (("témoignage", e["temoignages"]),
                                   ("domaine (aperçu WhatsApp)", COMMUN["domaine"]),
                                   ("vidéo fiche", COMMUN["fiche_video_yt"] or COMMUN["fiche_video_loom"]),
                                   ("PDF conditions générales", COMMUN["cga_pdf"])) if not v]

@@ -90,7 +90,10 @@ COMMUN = {
 }
 
 ECOLES = {
-    "columbia":  {"ecole": "Columbia",  "logo": "columbia",  "temoignage_yt": "IDENTIFIANT_YOUTUBE"},
+    "columbia": {"ecole": "Columbia", "logo": "columbia",
+                 "intro": "Texte au-dessus des vidéos",
+                 "temoignages": [{"yt": "IDENTIFIANT_YOUTUBE", "legende": "Prénom, admis à Columbia"}]},
+    # plusieurs vidéos possibles : elles s'affichent côte à côte
     ...
 }
 ```
