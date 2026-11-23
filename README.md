@@ -57,21 +57,13 @@ Pas de commande de build, dossier publié = `dist`.
 
 ---
 
-## 3. Ce qui manque encore (repéré par une étiquette jaune « À AJOUTER » sur les pages)
+## 3. État des pages (23/11)
 
-| Élément | Où il apparaît | Qui le fournit |
-|---|---|---|
-| **Vidéo témoignage Columbia** | page Columbia, bloc 3 | Léa / équipe contenu |
-| **Vidéo témoignage Princeton** | page Princeton, bloc 3 | Léa / équipe contenu |
-| **Vidéo témoignage Harvard** | page Harvard, bloc 3 | Léa (tournage prévu le 22/11) |
-| **Vidéo témoignage Yale** | page Yale, bloc 3 | Léa |
-| **Vidéo de Léa qui explique la fiche « point en famille »** (≈ 3 min) | toutes les pages, bloc 2 | Léa |
-| **PDF des conditions générales d'admission** | toutes les pages, bloc 5 | Les Stratèges |
-| **Nom de domaine** (dans `build.py`) | aperçu du lien sur WhatsApp | Max |
+Les 4 pages écoles sont complètes : témoignages en ligne, fiche « point en famille » finale (version d'Enzo du 23/11) en PDF téléchargeable, avec son aperçu sur la page.
 
-Déjà en place : les 3 vidéos de Léa (présentation du plan, les six piliers, les plans B), la fiche « point en famille » en PDF téléchargeable, le logo et les 8 blasons.
+Retirés à la demande d'Enzo (23/11) : la vidéo de Léa sur la fiche (pas de Loom prévu) et le bloc des conditions générales d'admission (document inexistant).
 
-**Ne pas envoyer une page aux familles tant qu'elle affiche une étiquette jaune.**
+Pour changer la fiche : remplacer `src/assets/fiche-point-en-famille.pdf` et `src/assets/fiche-apercu.jpg` (image de la page 1), puis régénérer.
 
 ---
 
@@ -84,9 +76,6 @@ Tout se règle en haut de `build.py`, puis on régénère.
 ```python
 COMMUN = {
     "domaine": "https://admission.ivy-strategy.co",  # votre sous-domaine final
-    "fiche_video_yt": "IDENTIFIANT_YOUTUBE",   # vidéo de Léa sur la fiche
-    "fiche_video_loom": None,                  # ou un lien Loom embed à la place
-    "cga_pdf": "conditions-generales.pdf",     # fichier à déposer dans src/assets/
 }
 
 ECOLES = {
