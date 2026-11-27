@@ -71,7 +71,7 @@ Pour changer la fiche : remplacer `src/assets/fiche-point-en-famille.pdf` et `sr
 
 Tout se règle en haut de `build.py`, puis on régénère.
 
-**Les vidéos** se mettent en ligne sur YouTube en **non répertorié**. Pour chaque vidéo, on colle seulement l'identifiant, c'est-à-dire ce qui suit `youtu.be/` (exemple : `youtu.be/UYbjRTaa7lc` → `UYbjRTaa7lc`).
+**Les vidéos** se mettent en ligne sur YouTube en **non répertorié**. Pour chaque vidéo, on colle seulement l'identifiant, c'est-à-dire ce qui suit `youtu.be/` (exemple : `youtu.be/JJ1mgr9rjhA` → `JJ1mgr9rjhA`).
 
 ```python
 COMMUN = {

@@ -39,7 +39,7 @@ ECOLES = {
 VIDEOS = {
     "piliers":          {"titre": "Les 6 piliers d'un dossier admis",  "yt": "IOaZ134qCHU"},  # VSL 1, avant le R1
     "plans-b":          {"titre": "Les plans B de luxe",               "yt": "b8jjvQ4zTvk"},  # VSL 2, entre R1 et R2
-    "plan-de-reussite": {"titre": "Présentation du plan de réussite",  "yt": "UYbjRTaa7lc"},  # VSL 3, entre R1 et R2
+    "plan-de-reussite": {"titre": "Présentation du plan de réussite",  "yt": "JJ1mgr9rjhA"},  # VSL 3, entre R1 et R2
 }
 
 TODO = '<span class="todo">À AJOUTER</span>'
