@@ -122,6 +122,14 @@ def main():
         (out / "index.html").write_text(html, encoding="utf-8")
         print(f"{slug:16} -> dist/{slug}/index.html   vidéo : {v['titre']}")
 
+    # Page de réassurance « Qui sommes-nous » (27/11/2026), à envoyer aux familles qui doutent.
+    out = dist / "a-propos"
+    if out.exists():
+        shutil.rmtree(out)
+    shutil.copytree(ROOT / "src" / "assets", out / "assets")
+    shutil.copy(ROOT / "src" / "a-propos" / "index.html", out / "index.html")
+    print("a-propos         -> dist/a-propos/index.html   page de réassurance")
+
 
 if __name__ == "__main__":
     main()

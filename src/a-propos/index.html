@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Qui sommes-nous · Les Stratèges</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A24D; --gold-dark:#8A6A24; --ink:#111111; --text:#1A1A1A; --muted:#4A463F;
+  --cream:#F7F4EC; --cream-2:#EFEADF; --line:#E2DCCD; --dark-line:#3A362F; --dark-muted:#BDB7AA; --dark-text:#D9D4C7;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.5}
+a{color:var(--gold-dark)}
+img{max-width:100%}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 40px}
+.serif{font-family:Cinzel,Georgia,serif;font-weight:700}
+
+/* En-tête */
+header{background:var(--ink);padding:56px 0 64px}
+.brand{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.brand img{width:84px;height:84px;display:block}
+.brand-kicker{font-size:14px;letter-spacing:5px;color:var(--gold)}
+h1{margin:8px 0;font-size:48px;line-height:1.1;color:var(--cream)}
+.lead{margin:0;font-size:18px;color:var(--dark-text)}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.steps::before{content:"";position:absolute;top:17px;left:12%;right:12%;height:2px;background:var(--dark-line)}
+.step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.dot{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--dark-text);border:2px solid #5A554B;display:flex;align-items:center;justify-content:center;font-size:15px}
+.step.done .dot{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.step.now .dot{color:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,77,.25)}
+.step-t{font-size:13px;color:var(--cream)}
+.step.now .step-t{color:var(--gold)}
+.step-d{font-size:13px;line-height:1.4;color:var(--dark-muted);max-width:180px}
+
+/* Sections */
+section{padding:88px 0}
+section.alt{background:var(--cream-2)}
+.stack{display:flex;flex-direction:column;gap:24px}
+.kicker{font-size:13px;letter-spacing:3px;color:var(--gold-dark)}
+h2{margin:0;font-size:34px;line-height:1.15;color:var(--text)}
+.p{margin:0;font-size:17px;line-height:1.6;color:var(--muted);max-width:680px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:28px;margin-top:8px}
+.fiche{display:block;max-width:360px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 18px 40px rgba(17,17,17,.18);transition:transform .2s}
+.fiche:hover{transform:translateY(-3px)}
+.fiche img{display:block;width:100%;height:auto}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:48px;align-items:center}
+.caption{margin:10px 0 0;font-size:14px;color:var(--muted)}
+
+/* Lecteur vidéo (charge YouTube au clic) */
+.video{position:relative;width:100%;aspect-ratio:16/9;background:#1E1D1A;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(17,17,17,.18)}
+.video .ply-start{all:unset;position:absolute;inset:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.video .thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .2s}
+.video .ply-start:hover .thumb,.video .ply-start:focus-visible .thumb{opacity:.7}
+.video .play{position:relative;width:76px;height:76px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;padding-left:4px;transition:transform .2s}
+.video .ply-start:hover .play{transform:scale(1.06)}
+.video .tag{position:absolute;top:18px;left:18px;background:rgba(17,17,17,.55);color:#EDE8DC;font-size:13px;padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.video .dur{position:absolute;top:18px;right:18px;color:var(--dark-text);font-size:13px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video.pending{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:var(--dark-muted);font-size:14px;text-align:center;padding:24px}
+.video.pending .play{background:#3A362F;opacity:.8}
+
+/* Cartes et boutons */
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--cream);text-decoration:none;font-weight:600;font-size:15px;align-self:flex-start}
+.btn:hover{background:#2A2824;color:var(--cream)}
+.btn[aria-disabled="true"]{background:#8D877B;pointer-events:none}
+.note{font-size:15px;line-height:1.55;color:var(--text)}
+.note.small{font-size:14px;color:var(--muted)}
+
+/* Témoignage */
+.school{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.crest{width:64px;height:64px;border-radius:50%;background:#fff;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;flex:none}
+.crest img{width:44px;height:44px;object-fit:contain}
+
+/* Repère interne : visible uniquement sur la page modèle */
+.todo{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:6px;background:#FFF1C9;color:#7A5A00;border:1px dashed #C9A24D;font:600 11px/1.6 Inter,Arial,sans-serif;letter-spacing:.3px;vertical-align:middle}
+
+/* Pied de page */
+footer{background:var(--ink);padding:48px 0 40px}
+.crests{display:grid;grid-template-columns:repeat(8,1fr);gap:20px 8px}
+.crests div{display:flex;flex-direction:column;align-items:center;gap:8px}
+.crests .c{width:60px;height:60px;border-radius:50%;background:var(--cream);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center}
+.crests img{width:42px;height:42px;object-fit:contain}
+.crests span{font-size:12px;letter-spacing:1px;color:var(--gold)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--dark-line);padding-top:24px;margin-top:32px}
+.foot .serif{font-size:20px;letter-spacing:6px;color:var(--cream)}
+.foot span:last-child{font-size:15px;color:var(--dark-text)}
+
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  header{padding:36px 0 40px}
+  .brand{gap:16px}
+  .brand img{width:60px;height:60px}
+  h1{font-size:32px}
+  .lead{font-size:16px}
+  .steps{grid-template-columns:repeat(2,1fr);gap:24px 12px;margin-top:32px}
+  .steps::before{display:none}
+  section{padding:56px 0}
+  h2{font-size:26px}
+  .p{font-size:16px}
+  .video .play{width:60px;height:60px}
+  .btn{align-self:stretch;justify-content:center;text-align:center;padding:10px 18px}
+  .crests{grid-template-columns:repeat(4,1fr)}
+}
+
+/* À propos */
+.todo-box{background:#FFF6D6;border:2px dashed #C9A24D;border-radius:10px;padding:14px 16px;color:#5C4400;font-size:15px;line-height:1.5}
+.todo-box b{display:inline-block;background:#C9A24D;color:#111;border-radius:6px;padding:1px 8px;font-size:12px;letter-spacing:.5px;margin-right:8px}
+.nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.nav a{color:var(--cream);border:1px solid var(--dark-line);border-radius:999px;padding:8px 14px;font-size:14px;text-decoration:none}
+.nav a:hover{border-color:var(--gold);color:var(--gold)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.fact .n{font-family:Cinzel,Georgia,serif;font-weight:700;font-size:40px;line-height:1;color:var(--gold-dark)}
+.fact .t{margin-top:8px;font-size:15px;color:var(--muted)}
+.dl{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{display:grid;grid-template-columns:220px 1fr;gap:8px 24px;padding:16px 20px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row dt{font-weight:600;color:var(--text);font-size:15px}
+.row dd{margin:0;color:var(--muted);font-size:15px}
+dl{margin:0}
+.admis{display:flex;flex-wrap:wrap;gap:12px}
+.admis .a{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 16px 6px 8px;font-size:15px}
+.admis .c{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:#fff}
+.admis .c img{width:28px;height:28px;object-fit:contain}
+.poles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px}
+.pole{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:12px;padding:20px}
+.pole h3{margin:0 0 6px;font-size:18px;color:var(--text)}
+.pole p{margin:0;font-size:15px;color:var(--muted)}
+.portrait{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start}
+.photo-slot{aspect-ratio:4/5}
+.photo-slot .todo-box{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:6px}
+.ul{margin:0;padding-left:20px;color:var(--muted);font-size:16px;line-height:1.6;max-width:680px}
+h3.sub{margin:16px 0 0;font-size:20px;color:var(--text)}
+@media (max-width:760px){
+  .row{grid-template-columns:1fr;gap:4px;padding:14px 16px}
+  .portrait{grid-template-columns:1fr;gap:20px}
+  .photo-slot{aspect-ratio:auto;max-width:240px}
+  .photo-slot .todo-box{padding:28px 14px}
+  .facts{grid-template-columns:1fr 1fr;gap:12px}.fact{padding:16px}.fact .n{font-size:32px}.fact .t{font-size:14px}
+  .nav{margin-top:22px}
+}
+html{scroll-behavior:smooth}</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Logo Les Stratèges">
+      <div>
+        <div class="serif brand-kicker">LES STRATÈGES</div>
+        <h1 class="serif">Qui sommes-nous</h1>
+        <p class="lead">Vous avez le droit de vous poser des questions avant de nous confier votre enfant. Cette page rassemble qui nous sommes : la société, les résultats de la promotion 2026, notre façon d'accompagner chaque élève et les élèves qui témoignent.</p>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Sommaire">
+      <a href="#societe">La société</a><a href="#fondatrice">La fondatrice</a><a href="#resultats">Les résultats 2026</a><a href="#methode">L'accompagnement</a><a href="#temoignages">Les témoignages</a><a href="#bureaux">Bureaux et événements</a>
+    </nav>
+  </div>
+</header>
+
+<section id="societe">
+  <div class="wrap stack">
+    <div class="serif kicker">1 · LA SOCIÉTÉ</div>
+    <h2 class="serif">Une société américaine, basée à New York</h2>
+    <p class="p">Les Stratèges est une société américaine dont l'adresse est à New York. Elle existe depuis plus de six ans et accompagne les élèves sur trois pôles : Sciences Po, médecine et Ivy League. Des bureaux à New York sont prévus.</p>
+    <div class="poles">
+      <div class="pole"><h3 class="serif">Sciences Po</h3><p>Un pôle dédié à la préparation de l'admission.</p></div>
+      <div class="pole"><h3 class="serif">Médecine</h3><p>Un pôle dédié aux études de médecine.</p></div>
+      <div class="pole"><h3 class="serif">Ivy League</h3><p>Le pôle qui vous concerne : les admissions dans les universités américaines de l'Ivy League.</p></div>
+    </div>
+    <h3 class="serif sub">Fiche de la société</h3>
+    <dl class="dl">
+      <div class="row"><dt>Statut</dt><dd>Société américaine</dd></div>
+      <div class="row"><dt>Ville du siège</dt><dd>New York, États-Unis</dd></div>
+      <div class="row"><dt>Ancienneté</dt><dd>Plus de 6 ans d'existence</dd></div>
+      <div class="row"><dt>Pôles</dt><dd>Sciences Po, médecine, Ivy League</dd></div>
+      <div class="row"><dt>Bureaux</dt><dd>Bureaux à New York prévus (voir la section « Bureaux et événements »)</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="alt" id="fondatrice">
+  <div class="wrap stack">
+    <div class="serif kicker">2 · LA FONDATRICE</div>
+    <h2 class="serif">Léa, fondatrice des Stratèges</h2>
+    <div class="stack">
+      <div class="stack" style="gap:16px">
+        <p class="p">Léa a fondé Les Stratèges. C'est elle qui présente le plan de préparation, les six piliers et les cas concrets dans les vidéos de la section « L'accompagnement ».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resultats">
+  <div class="wrap stack">
+    <div class="serif kicker">3 · LES RÉSULTATS DE LA PROMOTION 2026</div>
+    <h2 class="serif">Les chiffres de la promotion 2026</h2>
+    <p class="p">Voici les chiffres tels que nous les avons arrêtés pour la promotion 2026, avec ce que chacun recouvre exactement.</p>
+    <div class="facts">
+      <div class="fact"><div class="n">48</div><div class="t">élèves accompagnés en 2026</div></div>
+      <div class="fact"><div class="n">30</div><div class="t">élèves de Terminale ont présenté les admissions Ivy League</div></div>
+      <div class="fact"><div class="n">29</div><div class="t">ont respecté les conditions du calcul du taux de réussite</div></div>
+      <div class="fact"><div class="n">10</div><div class="t">admis dans une université Ivy League</div></div>
+    </div>
+    <p class="p">Sur les 48 élèves, 30 étaient en Terminale et ont présenté les admissions Ivy League. Les 18 autres, en 3e, 2nde ou 1re, font partie des futures promotions. Parmi les 30 élèves de Terminale, 29 ont respecté les conditions retenues pour le calcul du taux de réussite, et 10 d'entre eux ont été admis dans une université de l'Ivy League.</p>
+    <h3 class="serif sub">Où les 10 élèves ont été admis</h3>
+    <div class="admis">
+      <div class="a"><div class="c"><img src="assets/harvard.png" alt="Blason Harvard"></div><span>Harvard : 1</span></div><div class="a"><div class="c"><img src="assets/yale.png" alt="Blason Yale"></div><span>Yale : 2</span></div><div class="a"><div class="c"><img src="assets/columbia.png" alt="Blason Columbia"></div><span>Columbia : 3</span></div><div class="a"><div class="c"><img src="assets/princeton.png" alt="Blason Princeton"></div><span>Princeton : 1</span></div><div class="a"><div class="c"><img src="assets/upenn.png" alt="Blason UPenn"></div><span>UPenn : 2</span></div><div class="a"><div class="c"><img src="assets/brown.png" alt="Blason Brown"></div><span>Brown : 1</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="methode">
+  <div class="wrap stack">
+    <div class="serif kicker">4 · L'ACCOMPAGNEMENT</div>
+    <h2 class="serif">Un suivi régulier, du projet à l'admission</h2>
+    <p class="p">Chaque élève est suivi en coaching individuel, à un rythme qui dépend de son année :</p>
+    <ul class="ul">
+      <li>en seconde, un coaching toutes les deux semaines ;</li>
+      <li>en première et en terminale, un coaching par semaine.</li>
+    </ul>
+    <p class="p">Le projet personnel de l'élève est accompagné par un coaching en tête à tête et par des conférences avec les professeurs. Léa vous présente la méthode en vidéo.</p>
+    <div class="grid2">
+      <div><div class="video" data-yt="UYbjRTaa7lc" data-tag="Présentation du plan"></div><p class="caption">Présentation du plan</p></div>
+      <div><div class="video" data-yt="IOaZ134qCHU" data-tag="Les six piliers"></div><p class="caption">Les six piliers de l'accompagnement</p></div>
+      <div><div class="video" data-yt="x3uXauFfg_o" data-tag="Les cas concrets"></div><p class="caption">Les cas concrets : les projets (pilier III)</p></div>
+      <div><div class="video" data-yt="b8jjvQ4zTvk" data-tag="Les plans B"></div><p class="caption">Les plans B de luxe</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="temoignages">
+  <div class="wrap stack" style="gap:36px">
+    <div class="stack">
+      <div class="serif kicker">5 · LES TÉMOIGNAGES</div>
+      <h2 class="serif">Ils parlent mieux que nous</h2>
+      <p class="p">Des élèves admis et des étudiants racontent leur parcours, en entier et avec leurs mots. Vous pouvez tout regarder.</p>
+    </div>
+    <div class="stack" style="gap:16px"><div class="school"><div class="crest"><img src="assets/columbia.png" alt="Blason Columbia"></div><h3 class="serif sub" style="margin:0">Columbia</h3></div>
+<p class="p">Seth, ingénieur passé par la prépa et l'ESTP, raconte son admission en master à Columbia. Selma, étudiante à Columbia, partage son parcours avec Théotime, admis à Boston College : leur dossier, la vie de campus et leurs conseils.</p><div class="grid2"><div><div class="video" data-yt="xyZ81CK6IoM" data-tag="Seth, admis à Columbia"></div><p class="caption">Seth, admis à Columbia</p></div><div><div class="video" data-yt="4a3-3BXPFfo" data-tag="Selma (Columbia) et Théotime (Boston College)"></div><p class="caption">Selma (Columbia) et Théotime (Boston College)</p></div></div></div>
+    <div class="stack" style="gap:16px"><div class="school"><div class="crest"><img src="assets/princeton.png" alt="Blason Princeton"></div><h3 class="serif sub" style="margin:0">Princeton</h3></div>
+<p class="p">Kiara, 17 ans, a été admise à Princeton depuis la France. Elle détaille sa stratégie : ses notes dès la troisième, le SAT, ses essais, l'entretien d'admission et la bourse obtenue.</p><div class="grid2"><div><div class="video" data-yt="qKi9-4O5BEk" data-tag="Kiara, admise à Princeton"></div><p class="caption">Kiara, admise à Princeton</p></div></div></div>
+    <div class="stack" style="gap:16px"><div class="school"><div class="crest"><img src="assets/harvard.png" alt="Blason Harvard"></div><h3 class="serif sub" style="margin:0">Harvard</h3></div>
+<p class="p">Deux parcours, deux façons d'y arriver depuis un lycée français : Salomé, diplômée de Harvard, et Stéphanie, aujourd'hui étudiante en génie mécanique.</p><div class="grid2"><div><div class="video" data-yt="Lk7-jZFAiQU" data-tag="Salomé, diplômée de Harvard"></div><p class="caption">Salomé, diplômée de Harvard</p></div><div><div class="video" data-yt="dQZCuVhWYF8" data-tag="Stéphanie, étudiante à Harvard"></div><p class="caption">Stéphanie, étudiante à Harvard</p></div></div></div>
+    <div class="stack" style="gap:16px"><div class="school"><div class="crest"><img src="assets/yale.png" alt="Blason Yale"></div><h3 class="serif sub" style="margin:0">Yale</h3></div>
+<p class="p">Chloé, 18 ans, est entrée à Yale après un bac français. Elle raconte sa méthode : le SAT, ses activités, ses essais et ses lettres de recommandation.</p><div class="grid2"><div><div class="video" data-yt="kaiEOG0VBf4" data-tag="Chloé, étudiante à Yale"></div><p class="caption">Chloé, étudiante à Yale</p></div></div></div>
+  </div>
+</section>
+
+<section class="alt" id="bureaux">
+  <div class="wrap stack">
+    <div class="serif kicker">6 · BUREAUX ET ÉVÉNEMENTS</div>
+    <h2 class="serif">Des bureaux à New York, des rencontres en présentiel</h2>
+    <p class="p">Des bureaux à New York sont prévus. Nous organiserons aussi des événements en présentiel, pour que les familles puissent nous rencontrer.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack">
+    <div class="serif kicker">7 · UNE QUESTION ?</div>
+    <h2 class="serif">Nous répondons à toutes vos questions</h2>
+    <p class="p">Si un point reste flou, demandez-le directement à votre chargé d'admission. Nous préférons une question de trop à un doute gardé.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="crests">
+      <div><div class="c"><img src="assets/harvard.png" alt="Blason Harvard"></div><span class="serif">Harvard</span></div>
+      <div><div class="c"><img src="assets/yale.png" alt="Blason Yale"></div><span class="serif">Yale</span></div>
+      <div><div class="c"><img src="assets/princeton.png" alt="Blason Princeton"></div><span class="serif">Princeton</span></div>
+      <div><div class="c"><img src="assets/columbia.png" alt="Blason Columbia"></div><span class="serif">Columbia</span></div>
+      <div><div class="c"><img src="assets/upenn.png" alt="Blason UPenn"></div><span class="serif">UPenn</span></div>
+      <div><div class="c"><img src="assets/cornell.png" alt="Blason Cornell"></div><span class="serif">Cornell</span></div>
+      <div><div class="c"><img src="assets/brown.png" alt="Blason Brown"></div><span class="serif">Brown</span></div>
+      <div><div class="c"><img src="assets/dartmouth.png" alt="Blason Dartmouth"></div><span class="serif">Dartmouth</span></div>
+    </div>
+    <div class="foot">
+      <span class="serif">LES STRATÈGES</span>
+      <span>Une question ? Contactez votre chargé d'admission.</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/player.js"></script>
+</body>
+</html>
