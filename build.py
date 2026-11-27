@@ -18,8 +18,9 @@ COMMUN = {
 # de vidéos YouTube (id = ce qui suit youtu.be/). Liste vide = repère « à ajouter » affiché.
 ECOLES = {
     "columbia": {"ecole": "Columbia", "logo": "columbia",
-                 "intro": "Seth, ingénieur passé par la prépa et l'ESTP, raconte son admission en master à Columbia. Selma, étudiante à Columbia, partage son parcours avec Théotime, admis à Boston College : leur dossier, la vie de campus et leurs conseils.",
-                 "temoignages": [{"yt": "xyZ81CK6IoM", "legende": "Seth, admis à Columbia"},
+                 "intro": "Gabriel, étudiant en maths et économie à Columbia, raconte comment il a préparé sa candidature depuis un lycée français : le SAT, le TOEFL, ses essais et l'histoire de son admission. Seth, ingénieur passé par la prépa et l'ESTP, raconte son admission en master à Columbia. Selma, étudiante à Columbia, partage son parcours avec Théotime, admis à Boston College : leur dossier, la vie de campus et leurs conseils.",
+                 "temoignages": [{"yt": "q-dC8Pb2REg", "legende": "Gabriel, étudiant à Columbia"},
+                                 {"yt": "xyZ81CK6IoM", "legende": "Seth, admis à Columbia"},
                                  {"yt": "4a3-3BXPFfo", "legende": "Selma (Columbia) et Théotime (Boston College)"}]},
     "princeton": {"ecole": "Princeton", "logo": "princeton",
                   "intro": "Kiara, 17 ans, a été admise à Princeton depuis la France. Elle détaille sa stratégie : ses notes dès la troisième, le SAT, ses essais, l'entretien d'admission et la bourse obtenue.",
